@@ -21,6 +21,8 @@ from graphene_django.views import GraphQLView
 
 from rest_framework import routers
 from rest_api.core import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 router = routers.DefaultRouter()
 router.register(r'todos', views.TodoView, 'todo')
@@ -33,4 +35,4 @@ urlpatterns = [
 
     # rest-api
     path('rest-api/', include(router.urls)),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
