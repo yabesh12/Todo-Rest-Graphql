@@ -9,8 +9,21 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import ast
 import os
 from pathlib import Path
+
+
+def get_bool_from_env(name, default_value):
+    if name in os.environ:
+        value = os.environ[name]
+        try:
+            return ast.literal_eval(value)
+        except ValueError as e:
+            raise ValueError(
+                "{} is an invalid value for {}".format(value, name)) from e
+    return default_value
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +54,7 @@ INSTALLED_APPS = [
     # packages
     'graphene_django',
     'rest_framework',
+    'storages',
 
     # apps,
     'core',
@@ -137,7 +151,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -157,3 +170,22 @@ AUTHENTICATION_BACKENDS = [
 
 
 # REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
+
+# AMAZON S3 CONFIGURATION
+do_space = get_bool_from_env('DO_SPACE', False)
+if do_space is True:
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_S3_ENDPOINT_URL = os.environ.get("AWS_S3_ENDPOINT_URL", None)
+    AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_CUSTOM_DOMAIN")
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    STATICFILES_LOCATION = os.environ.get("STATICFILES_LOCATION")
+    MEDIAFILES_LOCATION = os.environ.get("MEDIAFILES_LOCATION")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME")
+    AWS_LOCATION = os.environ.get("AWS_LOCATION", "")
+    AWS_S3_FILE_OVERWRITE = get_bool_from_env("AWS_S3_FILE_OVERWRITE", False)
+    AWS_S3_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400',
+    }
