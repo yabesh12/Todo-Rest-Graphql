@@ -171,6 +171,17 @@ AUTHENTICATION_BACKENDS = [
 
 # REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
 
+def get_list(text):
+    return [item.strip() for item in text.split(",")]
+
+# cors settings
+cors = get_bool_from_env('CORS', False)
+if cors is True:
+    INSTALLED_APPS += ['corsheaders']
+    MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware', ]
+    CORS_ORIGIN_WHITELIST = get_list(
+        os.environ.get('CORS_ORIGIN_WHITELIST', 'http://localhost:3000,http://127.0.0.1:3000'))
+
 # AMAZON S3 CONFIGURATION
 do_space = get_bool_from_env('DO_SPACE', False)
 if do_space is True:
