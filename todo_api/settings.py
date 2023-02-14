@@ -181,6 +181,7 @@ if cors is True:
     MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware', ]
     CORS_ORIGIN_WHITELIST = get_list(
         os.environ.get('CORS_ORIGIN_WHITELIST', 'http://localhost:3000,http://127.0.0.1:3000'))
+    SECURE_CROSS_ORIGIN_OPENER_POLICY=None
 
 # AMAZON S3 CONFIGURATION
 do_space = get_bool_from_env('DO_SPACE', False)
