@@ -15,8 +15,10 @@ from pathlib import Path
 
 
 def get_bool_from_env(name, default_value):
+    print(name)
     if name in os.environ:
         value = os.environ[name]
+        print(value)
         try:
             return ast.literal_eval(value)
         except ValueError as e:
@@ -144,9 +146,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'staticfiles/'),
+    os.path.join(BASE_DIR, 'static/'),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
@@ -176,6 +178,7 @@ def get_list(text):
 
 # cors settings
 cors = get_bool_from_env('CORS', False)
+print(f'cors {cors}')
 if cors is True:
     print("COrs TRUE")
     INSTALLED_APPS += ['corsheaders']
@@ -186,6 +189,7 @@ if cors is True:
 
 # AMAZON S3 CONFIGURATION
 do_space = get_bool_from_env('DO_SPACE', False)
+print(do_space)
 if do_space is True:
     print("Aws S3 opened!")
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
@@ -203,3 +207,14 @@ if do_space is True:
     AWS_S3_OBJECT_PARAMETERS = {
         'CacheControl': 'max-age=86400',
     }
+AWS_ACCESS_KEY_ID = "AKIA5BNZZ4736SQUK4XF"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = 'django-aws-bucket-1995'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION="todo-api/static"
+  
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
