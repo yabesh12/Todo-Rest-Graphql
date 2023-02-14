@@ -177,6 +177,7 @@ def get_list(text):
 # cors settings
 cors = get_bool_from_env('CORS', False)
 if cors is True:
+    print("COrs TRUE")
     INSTALLED_APPS += ['corsheaders']
     MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware', ]
     CORS_ORIGIN_WHITELIST = get_list(
@@ -186,6 +187,7 @@ if cors is True:
 # AMAZON S3 CONFIGURATION
 do_space = get_bool_from_env('DO_SPACE', False)
 if do_space is True:
+    print("Aws S3 opened!")
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     AWS_S3_ENDPOINT_URL = os.environ.get("AWS_S3_ENDPOINT_URL", None)
