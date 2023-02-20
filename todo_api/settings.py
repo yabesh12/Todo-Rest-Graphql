@@ -205,7 +205,7 @@ if do_space is True:
 AWS_ACCESS_KEY_ID = "AKIA5BNZZ4736SQUK4XF"
 AWS_SECRET_ACCESS_KEY = "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"
 AWS_STORAGE_BUCKET_NAME = 'django-aws-bucket-1995'
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
