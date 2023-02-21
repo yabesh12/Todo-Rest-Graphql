@@ -187,6 +187,7 @@ if cors is True:
 # AMAZON S3 CONFIGURATION
 do_space = get_bool_from_env('DO_SPACE', False)
 if do_space is True:
+    print("do_space")
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     AWS_S3_ENDPOINT_URL = os.environ.get("AWS_S3_ENDPOINT_URL", None)
@@ -197,19 +198,22 @@ if do_space is True:
     MEDIAFILES_LOCATION = os.environ.get("MEDIAFILES_LOCATION")
     AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
     AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME")
-    AWS_LOCATION = os.environ.get("AWS_LOCATION", "")
+    AWS_LOCATION = os.environ.get("AWS_LOCATION", "todo-api/static")
     AWS_S3_FILE_OVERWRITE = get_bool_from_env("AWS_S3_FILE_OVERWRITE", False)
+    AWS_DEFAULT_ACL = None
     AWS_S3_OBJECT_PARAMETERS = {
         'CacheControl': 'max-age=86400',
     }
-AWS_ACCESS_KEY_ID = "AKIA5BNZZ4736SQUK4XF"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BUCKET_NAME = 'django-aws-bucket-1995'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_LOCATION="todo-api/static"
+# AWS_ACCESS_KEY_ID = "AKIA5BNZZ4736SQUK4XF"
+# AWS_SECRET_ACCESS_KEY = "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"
+# AWS_STORAGE_BUCKET_NAME = 'django-aws-bucket-1995'
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_DEFAULT_ACL = None
+# print(AWS_S3_CUSTOM_DOMAIN)
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=86400',
+# }
+# AWS_LOCATION="todo-api/static"
   
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
