@@ -177,7 +177,7 @@ def get_list(text):
     return [item.strip() for item in text.split(",")]
 
 # cors settings
-cors = get_bool_from_env('CORS', False)
+cors = get_bool_from_env('CORS', True)
 if cors is True:
     INSTALLED_APPS += ['corsheaders']
     MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware', ]
