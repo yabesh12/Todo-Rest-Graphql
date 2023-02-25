@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import ast
 import os
 from pathlib import Path
-# from dotenv import load_dotenv
-# load_dotenv()
 
 
 def get_bool_from_env(name, default_value):
