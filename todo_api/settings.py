@@ -15,6 +15,7 @@ from pathlib import Path
 # from dotenv import load_dotenv
 # load_dotenv()
 
+
 def get_bool_from_env(name, default_value):
     if name in os.environ:
         value = os.environ[name]
@@ -34,8 +35,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.environ.get("SECRET_KEY")
-SECRET_KEY = "g9%))zqxpw@weha0_68+yj5fnfz8-@kx+j(sh1b7*&=v0$xex0"
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY", "g9%))zqxpw@weha0_68+yj5fnfz8-@kx+j(sh1b7*&=v0$xex0")
+print(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -176,6 +178,7 @@ AUTHENTICATION_BACKENDS = [
 def get_list(text):
     return [item.strip() for item in text.split(",")]
 
+
 # cors settings
 cors = get_bool_from_env('CORS', True)
 if cors is True:
@@ -183,7 +186,7 @@ if cors is True:
     MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware', ]
     CORS_ORIGIN_WHITELIST = get_list(
         os.environ.get('CORS_ORIGIN_WHITELIST', 'http://localhost:3000,http://127.0.0.1:3000'))
-    SECURE_CROSS_ORIGIN_OPENER_POLICY=None
+    SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 
 # AMAZON S3 CONFIGURATION
 do_space = get_bool_from_env('DO_SPACE', False)
@@ -214,7 +217,7 @@ print(AWS_S3_CUSTOM_DOMAIN)
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-AWS_LOCATION="todo-api/static"
-  
+AWS_LOCATION = "todo-api/static"
+
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
