@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import ast
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def get_bool_from_env(name, default_value):
@@ -33,7 +35,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g9%))zqxpw@weha0_68+yj5fnfz8-@kx+j(sh1b7*&=v0$xex0'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'g9%))zqxpw@weha0_68+yj5fnfz8-@kx+j(sh1b7*&=v0$xex0')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
