@@ -207,6 +207,8 @@ if do_space is True:
     AWS_S3_OBJECT_PARAMETERS = {
         'CacheControl': 'max-age=86400',
     }
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # AWS_ACCESS_KEY_ID = "AKIA5BNZZ4736SQUK4XF"
 # AWS_SECRET_ACCESS_KEY = "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"
 # AWS_STORAGE_BUCKET_NAME = 'django-aws-bucket-1995'
@@ -217,6 +219,3 @@ if do_space is True:
 #     'CacheControl': 'max-age=86400',
 # }
 # AWS_LOCATION = "todo-api/static"
-
-# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
