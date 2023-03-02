@@ -238,10 +238,17 @@ AWS_ACCESS_KEY_ID = 'AKIA5BNZZ4736SQUK4XF'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'aws-todo-static'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_ENDPOINT_URL="https://s3.amazonaws.com/aws-todo-static/"
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
+AWS_S3_REGION_NAME="ap-northeast-1"
 AWS_LOCATION = 'static'
+STATICFILES_LOCATION="aws-todo-static/dev/static"
+MEDIAFILES_LOCATION="aws-todo-static/dev/media"
+PUBLICFILES_LOCATION="aws-todo-static/dev/media"
+AWS_S3_FILE_OVERWRITE=False
+
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
