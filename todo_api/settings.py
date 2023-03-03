@@ -248,7 +248,7 @@ STATICFILES_LOCATION="aws-todo-static/dev/static"
 MEDIAFILES_LOCATION="aws-todo-static/dev/media"
 PUBLICFILES_LOCATION="aws-todo-static/dev/media"
 AWS_S3_FILE_OVERWRITE=False
-
+AWS_DEFAULT_ACL="public-read"
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
