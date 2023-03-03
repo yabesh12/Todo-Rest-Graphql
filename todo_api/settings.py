@@ -223,35 +223,25 @@ if do_space is True:
     # STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
     # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# AWS_ACCESS_KEY_ID = "AKIA5BNZZ4736SQUK4XF"
-# AWS_SECRET_ACCESS_KEY = "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"
-# AWS_STORAGE_BUCKET_NAME = 'django-aws-bucket-1995'
-# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-# AWS_DEFAULT_ACL = None
-# print(AWS_S3_CUSTOM_DOMAIN)
-# AWS_S3_OBJECT_PARAMETERS = {
-#     'CacheControl': 'max-age=86400',
-# }
-# AWS_LOCATION = "todo-api/static"
 
-AWS_ACCESS_KEY_ID = 'AKIA5BNZZ4736SQUK4XF'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'aws-todo-static'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_ENDPOINT_URL="https://s3.amazonaws.com/aws-todo-static/"
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_S3_REGION_NAME="ap-northeast-1"
-AWS_LOCATION = 'static'
-STATICFILES_LOCATION="aws-todo-static/dev/static"
-MEDIAFILES_LOCATION="aws-todo-static/dev/media"
-PUBLICFILES_LOCATION="aws-todo-static/dev/media"
-AWS_S3_FILE_OVERWRITE=False
-AWS_DEFAULT_ACL="public-read"
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    AWS_S3_ENDPOINT_URL=os.environ.get("AWS_S3_ENDPOINT_URL")
+    AWS_S3_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400',
+    }
+    AWS_S3_REGION_NAME=os.environ.get("AWS_S3_REGION_NAME")
+    AWS_LOCATION = os.environ.get("AWS_LOCATION")
+    STATICFILES_LOCATION=os.environ.get("STATICFILES_LOCATION")
+    MEDIAFILES_LOCATION=os.environ.get("MEDIAFILES_LOCATION")
+    PUBLICFILES_LOCATION=os.environ.get("MEDIAFILES_LOCATION")
+    AWS_S3_FILE_OVERWRITE=False
+    AWS_DEFAULT_ACL=os.environ.get("AWS_DEFAULT_ACL")
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static/'),
-)
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static/'),
+    )
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
