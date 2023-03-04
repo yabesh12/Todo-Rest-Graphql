@@ -40,7 +40,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'g9%))zqxpw@weha0_68+yj5fnfz8-@kx+j(sh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.114.190.202', 'localhost', 'yabesh.tk', 'www.yabesh.tk']
+ALLOWED_HOSTS = ['3.114.190.202', 'localhost', 'yabesh.tk', 'www.yabesh.tk', 'http://yabesh.tk/']
 
 
 # Application definition
