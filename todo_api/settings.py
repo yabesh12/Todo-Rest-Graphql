@@ -254,9 +254,9 @@ if do_space is True:
     AWS_S3_ENDPOINT_URL="https://s3.amazonaws.com/aws-todo-static/"
     # AWS_S3_CUSTOM_DOMAIN=https://s3.amazonaws.com/aws-todo-static/
     AWS_SECRET_ACCESS_KEY="kxM9KleICQtsWofeExJvM81lb0c2k86d8Hg3fwp0"
-    # AWS_DEFAULT_ACL="public-read"
+    AWS_DEFAULT_ACL="public-read"
     STATICFILES_LOCATION="aws-todo-static/dev/static"
     MEDIAFILES_LOCATION="aws-todo-static/dev/media"
     PUBLICFILES_LOCATION="aws-todo-static/dev/media"
     AWS_S3_FILE_OVERWRITE=False
-    AWS_DEFAULT_ACL = None
+    # AWS_DEFAULT_ACL = None
