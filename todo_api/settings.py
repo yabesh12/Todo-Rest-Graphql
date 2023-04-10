@@ -40,7 +40,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'g9%))zqxpw@weha0_68+yj5fnfz8-@kx+j(sh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.114.190.202', 'localhost', 'todoapi.info', 'www.todoapi.info']
+ALLOWED_HOSTS = ['3.114.190.202', 'localhost', 'todo-apis.yabesh.tk', 'www.todo-apis.yabesh.tk']
 
 
 # Application definition
